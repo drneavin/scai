@@ -1,0 +1,29 @@
+---
+### Set up directories
+## If you have multiple technologies, I recommend keeping these the same
+fastq_dir: "/directflow/SCCGGroupShare/projects/DrewNeavin/ancestry_prediction_from_scRNA-seq/ancestry_annotations/data/"
+outdir: "/directflow/SCCGGroupShare/projects/DrewNeavin/ancestry_prediction_from_scRNA-seq/ancestry_annotations/results/"
+whitelist_dir: "/directflow/SCCGGroupShare/projects/DrewNeavin/References/single_cell_barcode_whitelists/"
+
+dataset_df: '/directflow/SCCGGroupShare/projects/DrewNeavin/ancestry_prediction_from_scRNA-seq/output/Dataset_evaluation/HCA_2023_03_15/datasetdf.10x_3prime.tsv'
+
+
+## Reference directories0
+fasta: "/path/to/genome.fa" ## Fasta for genome reference - this should be the same for the 'align_ref' below and the genome you want your data aligned to
+align_ref: "/directflow/GWCCGPipeline/projects/reference/refdata-cellranger-GRCh38-2020-A/" ## reference for alignment. Must  be a STAR reference directory if using 10x 3' or 5' 
+bed: '/directflow/SCCGGroupShare/projects/DrewNeavin/References/HGDP/hgdp_wgs.20190516.full.subset.{chr}.bed' ## bed file containing locations for SNV annotation - provided online
+
+
+## Monopogen tool location
+scai_dir: "/directflow/SCCGGroupShare/projects/DrewNeavin/software/Monopogen" ## should have an apps folder, references folder, scripts folder etc
+
+
+## Location of fastNGSadmix reference files
+ref_freq: "/directflow/SCCGGroupShare/projects/DrewNeavin/ancestry_prediction_from_scRNA-seq/output/HGDP/fastNGSadmix/reference/continental/refPanel_hgdp_wgs.20190516.full.subset.txt"
+n_Ind: "/directflow/SCCGGroupShare/projects/DrewNeavin/ancestry_prediction_from_scRNA-seq/output/HGDP/fastNGSadmix/reference/continental/nInd_hgdp_wgs.20190516.full.subset.txt"
+
+
+### Information for each dataset type
+capture_technology: '10x' ### Currently have only tested 10x but have additional scripts for additional technologies (UNTESTED) 
+seq_direction: 3 ### options are 3 or 5 for 3' or 5'; 10x 3' kits are 3 and 10 5' kits (often paired with VDJ sequencing are 5)
+

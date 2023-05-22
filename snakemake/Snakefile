@@ -1,0 +1,42 @@
+#!/usr/local/envs/py36/bin python3
+
+import os
+import sys
+import pandas as pd
+from glob import glob
+import subprocess
+from itertools import repeat
+import re
+import numpy as np
+
+
+##### Read in dataset dataframe #####
+datasets_df = pd.read_csv(config['dataset_df'], sep = "\t")
+
+
+
+##### Set up standing directories #####
+fastq_dir = config['fastq_dir'].rstrip("/")
+outdir = config['outdir'].rstrip("/")
+scai_dir = config['scai_dir'].rstrip("/")
+fasta =  config['fasta']
+
+
+
+##### Set up lists of references and beds for transcriptome vs ATAC
+dataset_df['ref'] = np.where(dataset_df.Seq_Technology.str.contains('10x_ATAC_v1'), config['ref_ATAC'].rstrip("/"), config['ref_transriptome'].rstrip("/"))
+dataset_df['chr'] = "chr" ## if any of the references don't have chr encoding, can change to accomodate with the following command structure
+
+
+
+##### Add the included smk files, keep in mind could add if then statements for demultiplexing if need to #####
+include: "process_fastq.smk"
+include: "archive_bams.smk"
+include: "annotate_ancestry.smk"
+
+
+
+
+rule all:
+    input:
+        expand(outdir + "/{pool}/continental_admixture.qopt", zip, dataset = dataset_df['Dataset'],technology = dataset_df.Seq_Technology,  pool = dataset_df['Pool'])
