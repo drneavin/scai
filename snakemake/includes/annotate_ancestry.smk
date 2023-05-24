@@ -65,6 +65,7 @@ rule samtools2beagle:
 rule merge_beagle_filtered:
     input:
         lambda wildcards: expand(outdir + "/{{dataset}}/{{technology}}/{{pool}}/{chr}.beagle.gl", chr = [(', '.join(set(dataset_df[dataset_df.Dataset.str.contains(wildcards.dataset) & dataset_df.Pool.str.contains(wildcards.pool)].chr)) + str(x)) for x in list(range(1,23))])
+        # lambda wildcards: expand(outdir + "/{{dataset}}/{{technology}}/{{pool}}/{chr}.beagle.gl", chr = [(', '.join(set(dataset_df[dataset_df.Dataset.str.contains(wildcards.dataset) & dataset_df.Pool.str.contains(wildcards.pool)].chr)) + str(x)) for x in list(range(1,23),"M")])
     output:
         bgl = outdir + "/{pool}/beagle.gl.gz",
         qstat = outdir + "/{pool}/qstat/merge_beagle_filtered.qstat",

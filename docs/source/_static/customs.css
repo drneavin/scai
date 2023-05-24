@@ -1,0 +1,43 @@
+/* Provided by Sphinx's 'basic' theme, and included in the final set of assets */
+
+
+:root {
+    --mainNavColor: #4a5fa4;
+    --navbarHeight: 4rem;
+    --linkColor: #4a5fa4;
+
+
+    &[data-mode="dark"],
+    &[data-mode="darkest"] {
+      --linkColor: #4a5fa4;
+    }
+}
+
+
+nav {
+    background-color: var(--mainNavColor);
+    box-sizing: border-box;
+    padding: 0rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    h1 {
+      flex-grow: 4;
+      font-size: 4rem;
+      margin: 0;
+      padding: 0 0 0 0rem;
+      line-height: 4;
+    }
+}
+
+div.body p,
+div.body li,
+div.body dd,
+table.docutils .justify-align {
+    text-align: justify;
+}
+
+body {
+  text-align:justify;
+}
