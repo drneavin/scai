@@ -3,11 +3,14 @@ From: d.neavin/scai/scai_base:0.0.1
 
 
 %environment
-    PATH=/opt/conda/bin:/opt/samtools-1.16.1:/opt/Monopogen/apps:/opt/scai/scripts:/opt/fastNGSadmix:/opt/scai/scripts/:$PATH
+    PATH=/opt/conda/bin:/opt/scai/scripts:/opt/samtools-1.16.1:/opt/Monopogen/apps:/opt/scai/scripts:/opt/fastNGSadmix:$PATH
     LD_LIBRARY_PATH=/opt/Monopogen/apps:$LD_LIBRARY_PATH
 
 %post
     #!/bin/bash
+
+    export PATH=/opt/conda/bin:/opt/scai/scripts:/opt/samtools-1.16.1:/opt/Monopogen/apps:/opt/scai/scripts:/opt/fastNGSadmix:${PATH}
+
     
     ## Pull Updated Monopogen Script ##
     cd /opt

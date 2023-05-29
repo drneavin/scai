@@ -77,7 +77,7 @@ then
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/Monopogen/apps/ ## update path here!!!!! and on line 70
 
     # python /opt/scai/scripts/Monopogen4ancestry_bed_locations.py SCvarCall \
-    python /directflow/SCCGGroupShare/projects/DrewNeavin/ancestry_prediction_from_scRNA-seq/scai/scripts/Monopogen4ancestry_bed_locations.py SCvarCall \
+    python /opt/scai/scripts/Monopogen4ancestry_bed_locations.py SCvarCall \
         -b $BAM \
         -a /opt/Monopogen/apps/ \
         -c $CHR \
