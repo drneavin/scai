@@ -29,6 +29,7 @@ We have also built SCAI into a Snakemake pipeline that can be applied to fastq f
    Installation
    SCAI
    Snakemake
+   Resources
 
 
 Support

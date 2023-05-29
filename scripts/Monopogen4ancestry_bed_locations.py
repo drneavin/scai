@@ -49,13 +49,13 @@ def print_parameters_given(args):
 
 
 def validate_user_setting(args):
-	#assert os.path.isfile(args.bamFile), "The bam list file {} cannot be found!".format(args.bamFile)
+	assert os.path.isfile(args.bamFile), "The bam list file {} cannot be found!".format(args.bamFile)
 	assert os.path.isfile(args.reference), "The genome reference fasta file {} cannot be found!".format(args.reference)
-	assert os.path.isfile(args.imputation_panel), "Filtered genotype file of 1KG3 ref panel {} cannot be found!".format(args.imputation_panel)
+	# assert os.path.isfile(args.imputation_panel), "Filtered genotype file of 1KG3 ref panel {} cannot be found!".format(args.imputation_panel)
 	
 
 def check_dependencies(args):
-	programs_to_check = ("bgzip",  "bcftools", "beagle.27Jul16.86a.jar","samtools","java")
+	programs_to_check = ("bgzip",  "bcftools", "beagle.27Jul16.86a.jar")
 
 	for prog in programs_to_check:
 		out = os.popen("command -v {}".format(args.app_path + "/" + prog)).read()
@@ -193,7 +193,7 @@ def main():
 	logger.addHandler(handler1)
 
 	args.out = os.path.abspath(args.out)
-	args.samtools  = os.path.abspath(args.app_path) + "/samtools" 
+	args.samtools  = "samtools" 
 	args.bcftools = os.path.abspath(args.app_path) + "/bcftools"
 	args.bgzip = os.path.abspath(args.app_path) + "/bgzip"
 	args.java =  "java"
