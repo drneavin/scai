@@ -14,6 +14,7 @@ From: d.neavin/scai/scai_base:0.0.1
     
     ## Pull Updated Monopogen Script ##
     cd /opt
+    rm -rf scai
     git clone -n --depth=1 --filter=tree:0 https://github.com/drneavin/scai.git
     cd scai
     git sparse-checkout set --no-cone scripts

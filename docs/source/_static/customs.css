@@ -24,10 +24,10 @@ nav {
 
     h1 {
       flex-grow: 4;
-      font-size: 4rem;
+      font-size: 40rem;
       margin: 0;
       padding: 0 0 0 0rem;
-      line-height: 4;
+      line-height: 40;
     }
 }
 
@@ -40,4 +40,20 @@ table.docutils .justify-align {
 
 body {
   text-align:justify;
+}
+
+
+
+ /* override table no-wrap */
+ .wy-table-responsive table td, .wy-table-responsive table th {
+  white-space: normal;
+}
+
+.rst-content table.docutils td:first-child, 
+.rst-content table.docutils th:first-child, 
+.rst-content table.field-list td:first-child, 
+.rst-content table.field-list th:first-child, 
+.wy-table td:first-child,
+.wy-table th:first-child {
+  border-left-width: 1px;
 }

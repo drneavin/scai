@@ -12,8 +12,8 @@ To get started using SCAI, please download the singularity image and accompanyin
 
   .. code-block:: bash
 
-    wget https://www.dropbox.com/s/4zaes24o985ore8/SCAI_base.sif
-    wget https://www.dropbox.com/s/mf6b8v4w7h0voej/SCAI_base.sif.md5
+    wget https://www.dropbox.com/s/fcs090b0eb5owqj/SCAI.sif
+    wget https://www.dropbox.com/s/rft14hscfea5r4m/SCAI.sif.md5
 
 Before moving forward, please check that the singularity image was downloaded correctly by comparing the md5sum in the md5 file to the md5sum of the downloaded singularity image.
 
@@ -39,7 +39,8 @@ If everything was downloaded correctly, that command should report:
     Please make sure you are using documentation that complements the singularity image you have or download the most recent version.
 
 
-That's all you should need to do to run SCAI.
+That's all you should need to run SCAI. 
+Resources that can be used to run SCAI are also available on the  :ref:`Resources <Resources-docs>` page.
 
 Happy analyzing!
 
