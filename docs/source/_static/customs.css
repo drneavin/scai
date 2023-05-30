@@ -2,14 +2,14 @@
 
 
 :root {
-    --mainNavColor: #4a5fa4;
+    --mainNavColor: #4d69b2;
     --navbarHeight: 4rem;
-    --linkColor: #4a5fa4;
+    --linkColor: #4d69b2;
 
 
     &[data-mode="dark"],
     &[data-mode="darkest"] {
-      --linkColor: #4a5fa4;
+      --linkColor: #4d69b2;
     }
 }
 
