@@ -39,6 +39,30 @@ If everything was downloaded correctly, that command should report:
     Please make sure you are using documentation that complements the singularity image you have or download the most recent version.
 
 
+.. _SingImages:
+
+Using Singularity Images
+===========================
+
+Singularity images contain an specific environment. In this case, I've built the required software and scripts into the ``SCAI.sif`` singularity image.
+To run a command using the singularity image:
+
+  .. code-block:: bash
+
+    singularity exec SCAI.sif command ...
+
+One tricky bit about singularity images, is that they will only load the local file system that is below the location of the singularity image.
+However, we typically have to load files from different locations on the files system.
+We can do this by using the ``--bind`` flag to load different areas of the filesystem:
+
+  .. code-block::  bash
+
+    singularity exec --bind /path SCAI.sif command ...
+
+You will receive an error telling you the file doesn't exist if you haven't bound the correct required directories.
+We typically bind the top-most directory that contains all our files but you can also bind multiple directories with ``--bind /path1,/path2``
+
+
 That's all you should need to run SCAI. 
 Resources that can be used to run SCAI are also available on the  :ref:`Resources <Resources-docs>` page.
 

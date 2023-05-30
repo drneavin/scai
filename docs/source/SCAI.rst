@@ -45,9 +45,8 @@ Variant Calling
   ~XXX minutes when using XXX threads with XXXG memory each
 
 Variants are called using an altered and abreviated version of `monopogen <https://github.com/KChen-lab/Monopogen>`_ and then are converted to beagle files containing genotype probability likelihoods.
-We recommend running this step separately for each chromosome for each sample in parallel on a high performance cluster
 
-To do this, run the ``scai_variants.sh`` script:
+Here is an example of running the ``scai_variants.sh`` script but we recommend running it in parallel as demonstrated :ref:`below <ScaiVariantsParallel>`:
 
   .. code-block:: bash 
 
@@ -59,7 +58,67 @@ To do this, run the ``scai_variants.sh`` script:
   - ``FASTA`` is the genome reference fasta used to align the bam file (see :ref:`Required Files <SCAI-required-files>`)
   - ``OUT`` is the output directory where a ``vcf.gz`` will be generated
 
- 
+
+.. _ScaiVariantsParallel:
+
+Parallelization
+++++++++++++++++++
+
+We recommend running this step separately for each chromosome for each sample in parallel on a high performance cluster (HPC).
+First, we will set up a script for execution. 
+Below is an example of what this would look like for a SGE cluster. 
+We've generated templates for a few different HPC systems but I don't have access to other systems so be forwarned that I may have made mistakes when generating them and you may have to optimize them for your own cluster.
+
+.. note::
+
+  If you have 'chr' encoding in your chromosome names (*i.e.* chr1, chr2 ...) you will need to alter the loop to accommodate this.
+  Also note that you will have to have the same 'chr' encoding in all your files (``BAM``, ``BED``, ``FASTA``)
+
+
++------------+-------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+| HPC System | Without 'chr' Encoding                                                                                | With 'chr' Encoding                                                                                |
++============+=======================================================================================================+====================================================================================================+
+| SGE        | :download:`scai_variants.sge <../../references/cluster_templates/scai_variants.sge>`                  | :download:`scai_variants_chr.sge <../../references/cluster_templates/scai_variants_chr.sge>`       |
++------------+-------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+| LSF        | :download:`scai_variants.sge <../../references/cluster_templates/scai_variants.lsf>`                  | :download:`scai_variants_chr.sge <../../references/cluster_templates/scai_variants_chr.lsf>`       |
++------------+-------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+| SLURM      | :download:`scai_variants.sge <../../references/cluster_templates/scai_variants.slurm>`                | :download:`scai_variants_chr.sge <../../references/cluster_templates/scai_variants_chr.slurm>`     |
++------------+-------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+
+
+.. code-block::
+
+  ## SGE SETTINGS
+  #$ -cwd
+  #$ -S /bin/bash
+  #$ -q short.q
+  #$ -r yes
+  #$ -l mem_requested=50G
+  #$ -N scai_variants
+  #$ -o /path/to/log_dir
+  #$ -e /path/to/log_dir
+  #$ -t 1-22
+  #$ -j y 
+
+  ### Set up paths to files ###
+  BAM=/path/to/individual.bam
+  FASTA=/path/to/genome.fa
+  OUT=/path/to/output
+  SIF=/path/to/SCAI.sif
+
+  CHR=${SGE_TASK_ID} ## -t 1-22 in the SGE comand runs 22 different jobs with task IDs from 1 to 22.
+
+
+  ### Define the bed file for the specific chromosome being used ###
+  BED=/directflow/SCCGGroupShare/projects/DrewNeavin/References/HGDP/hgdp_wgs.20190516.full.subset.$CHR.bed
+  
+  ### Run scai_variants
+  singularity exec --bind /directflow $SIF bash scai_variants.sh -b $BAM -c $CHR -e $BED -f $FASTA -o $OUT
+
+
+.. note::
+
+  If you run in to issues will singularity or errors indicating files don't exist even though they do, please see the :ref:`Singularity Image Documentation <SingImages>`
 
 
 .. _AdmixtureInference:
