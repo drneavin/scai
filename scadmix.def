@@ -1,0 +1,25 @@
+Bootstrap: library
+From: d.neavin/scai/scai_base:0.0.1
+
+
+%environment
+    PATH=/opt/conda/bin:/opt/scai/scripts:/opt/samtools-1.16.1:/opt/Monopogen/apps:/opt/scai/scripts:/opt/fastNGSadmix:$PATH
+    LD_LIBRARY_PATH=/opt/Monopogen/apps:$LD_LIBRARY_PATH
+
+%post
+    #!/bin/bash
+
+    export PATH=/opt/conda/bin:/opt/scai/scripts:/opt/samtools-1.16.1:/opt/Monopogen/apps:/opt/scai/scripts:/opt/fastNGSadmix:${PATH}
+
+    
+    ## Pull Updated Monopogen Script ##
+    cd /opt
+    rm -rf scai
+    git clone -n --depth=1 --filter=tree:0 https://github.com/drneavin/scai.git
+    cd scai
+    git sparse-checkout set --no-cone scripts
+    git checkout
+    chmod 777 /opt/scai/scripts/*
+
+
+##############################################################################

@@ -80,7 +80,7 @@ html_theme = 'piccolo_theme'
 #     "logo_only": True,
 # }
 
-html_logo = "_figures/logo.png"
+html_logo = "_figures/logo_v1.png"
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

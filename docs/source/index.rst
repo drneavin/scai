@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-SCAI: Single Cell Admixture Inference
+scadmix: Single-Cell Admixture Inference
 =========================================================================
 
 
@@ -17,8 +17,7 @@ For example, ancestry and sex of the donor can contribute to variation in gene e
 Even when sex information is not collected for a donor when samples are collected, sex can be easily annotated by interrorgating the X and Y chromosome genes that are expressed.
 However, the ancestral admixture of each donor has been more challenging to estimate and may be an important hidden factor in gene expression differences.
 
-Here, we present SCAI (pronounced sky) a tool for **S**\ ingle **C**\ ell **A**\ dmixture **I**\ nference to estimate ancestry admixture which can be run as a stand-alone tool on a bam of aligned reads (see :ref:`Running SCAI <SCAI-docs>`). 
-We have also built SCAI into a Snakemake pipeline that can be applied to fastq files that does read alignnment followed by ancestry admixture estimation (see :ref:`Snakemake Pipeline <Snakemake-docs>`). 
+Here, we present SCAI (pronounced sky) a tool for single-cell admixtures inference (scadmix) to estimate ancestry admixture which can be run as a stand-alone tool on a bam of aligned reads (see :ref:`Running scadmix <scadmix-docs>`). 
 
 
  
@@ -27,8 +26,7 @@ We have also built SCAI into a Snakemake pipeline that can be applied to fastq f
    :caption: Contents: 
 
    Installation
-   SCAI
-   Snakemake
+   scadmix
    Resources
 
 
