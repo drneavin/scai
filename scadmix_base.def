@@ -3,7 +3,7 @@ From: continuumio/miniconda3
 
 
 %environment
-    PATH=/opt/conda/bin:/opt/scai/scripts:/opt/samtools-1.16.1:/opt/Monopogen/apps:/opt/scai/scripts:/opt/fastNGSadmix:/opt/scai/scripts/:/opt/fastNGSadmix/R:$PATH
+    PATH=/opt/conda/bin:/opt/scadmix/scripts:/opt/samtools-1.16.1:/opt/Monopogen/apps:/opt/scadmix/scripts:/opt/fastNGSadmix:/opt/scadmix/scripts/:/opt/fastNGSadmix/R:$PATH
     LD_LIBRARY_PATH=/opt/Monopogen/apps:$LD_LIBRARY_PATH
 
 %post
@@ -16,7 +16,7 @@ From: continuumio/miniconda3
     add-apt-repository "deb http://cloud.r-project.org/bin/linux/debian bullseye-cran40/"
     apt-get update --fix-missing
     
-    export PATH=/opt/conda/bin:/opt/scai/scripts:/opt/samtools-1.16.1:/opt/Monopogen/apps:/opt/scai/scripts:/opt/fastNGSadmix:/opt/scai/scripts/:/opt/fastNGSadmix/R:${PATH}
+    export PATH=/opt/conda/bin:/opt/scadmix/scripts:/opt/samtools-1.16.1:/opt/Monopogen/apps:/opt/scadmix/scripts:/opt/fastNGSadmix:/opt/scadmix/scripts/:/opt/fastNGSadmix/R:${PATH}
     export LD_LIBRARY_PATH=/opt/Monopogen/apps:$LD_LIBRARY_PATH
     
     ### Install htslib for samtools ###
@@ -47,11 +47,11 @@ From: continuumio/miniconda3
 
     ## Pull Updated Monopogen Script ##
     cd /opt
-    git clone -n --depth=1 --filter=tree:0 https://github.com/drneavin/scai.git
-    cd scai
+    git clone -n --depth=1 --filter=tree:0 https://github.com/powellgenomicslab/scadmix
+    cd scadmix
     git sparse-checkout set --no-cone scripts
     git checkout
-    chmod 777 /opt/scai/scripts/*
+    chmod 777 /opt/scadmix/scripts/*
 
 
     ## Install fastNGSadmix ##
